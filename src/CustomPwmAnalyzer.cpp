@@ -112,3 +112,22 @@ bool CustomPwmAnalyzer::NeedsRerun()
     // Возвращаем false, так как повторный прогон не требуется.
     return false;
 }
+
+// ============================================================
+// Обязательные экспортируемые функции для загрузки DLL в Logic 2
+// ============================================================
+
+extern "C" ANALYZER_EXPORT const char* __cdecl GetAnalyzerName()
+{
+    return "Custom PWM Decoder";
+}
+
+extern "C" ANALYZER_EXPORT Analyzer* __cdecl CreateAnalyzer()
+{
+    return new CustomPwmAnalyzer();
+}
+
+extern "C" ANALYZER_EXPORT void __cdecl DestroyAnalyzer( Analyzer* analyzer )
+{
+    delete analyzer;
+}
