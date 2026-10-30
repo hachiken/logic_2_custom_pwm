@@ -51,7 +51,7 @@ void CustomPwmAnalyzer::WorkerThread()
 
         // Создаём FrameV2, который будет доступен для HLA
         FrameV2 frameV2;
-        frameV2.AddFloat( "high_duration", highDurationSec );
+        frameV2.AddDouble( "high_duration", highDurationSec );
         frameV2.AddInteger( "high_duration_samples", highDurationSamples );
 
         // Также создаём обычный Frame для отображения "пузырька" на таймлайне
