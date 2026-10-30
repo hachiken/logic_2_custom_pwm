@@ -85,3 +85,30 @@ void CustomPwmAnalyzer::WorkerThread()
         // Пакет завершается после 24 бит, но это обрабатывается в HLA.
     }
 }
+
+U32 CustomPwmAnalyzer::GenerateSimulationData( U64 newest_sample_requested, U32 sample_rate,
+                                                SimulationChannelDescriptor** simulation_channels )
+{
+    // Простейшая заглушка. Для полноценной симуляции нужен
+    // класс CustomPwmSimulationDataGenerator, но для работы
+    // реального декодера достаточно и этого.
+    return 0;
+}
+
+U32 CustomPwmAnalyzer::GetMinimumSampleRateHz()
+{
+    // Минимальная частота дискретизации. 25 кГц — безопасное значение
+    // для большинства тайминговых протоколов.
+    return 25000;
+}
+
+const char* CustomPwmAnalyzer::GetAnalyzerName() const
+{
+    return "Custom PWM Decoder";
+}
+
+bool CustomPwmAnalyzer::NeedsRerun()
+{
+    // Возвращаем false, так как повторный прогон не требуется.
+    return false;
+}
